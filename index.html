@@ -642,6 +642,12 @@
     color: var(--gold-dark); font-weight: 500;
   }
 
+  /* Sobre o Dr. Carlos — espelhado: texto à esquerda, foto à direita */
+  .about-reverse {
+    grid-template-columns: 1.1fr 1fr;
+    background: #FAF6F0;
+  }
+
   /* ========== O ESCRITÓRIO ========== */
   .office { position:relative; overflow:hidden;
     padding: clamp(4.5rem,9vw,7.5rem) clamp(1.5rem,6vw,6rem);
@@ -909,6 +915,8 @@
 
     .about-decor { display: none; }
 
+    .about-reverse .about-img-container { order: -1; }
+
     .about-text .btn {
       padding: 14px 32px;
       font-size: 0.7rem;
@@ -1066,7 +1074,7 @@
         <span class="service-num-line"></span>
       </div>
       <h3>Aposentadorias</h3>
-      <p>Aposentadoria por idade, tempo de contribuição, especial e por invalidez. Planejamento para o melhor benefício possível.</p>
+      <p>Aposentadoria por idade, tempo de contribuição, especial, por invalidez e da pessoa com deficiência (PcD). Planejamento para o melhor benefício possível.</p>
     </div>
     <div class="service-card" data-animate data-delay="100">
       <div class="service-num-row">
@@ -1098,7 +1106,7 @@
         <span class="service-num-line"></span>
       </div>
       <h3>Revisão de Benefícios</h3>
-      <p>Revisão da vida toda, revisão de teto e outras teses para correção e aumento do valor do seu benefício.</p>
+      <p>Revisão de teto e outras teses para correção e aumento do valor do seu benefício.</p>
     </div>
     <div class="service-card" data-animate data-delay="200">
       <div class="service-num-row">
@@ -1133,6 +1141,27 @@
     </div>
   </div>
 </section>
+
+<!-- PENDENTE: texto do Dr. Carlos — descomentar quando chegar
+<section class="about about-reverse" id="sobre-carlos">
+  <div class="about-text" data-animate>
+    <span class="section-tag">Sócio fundador</span>
+    <h2 class="section-title">Dr. Carlos César Mamus</h2>
+    <p>[Parágrafo 1 — formação e trajetória]</p>
+    <p>[Parágrafo 2 — áreas em que atua dentro do previdenciário]</p>
+    <p>[Parágrafo 3 — como atende]</p>
+  </div>
+  <div class="about-img-container" data-animate data-delay="140">
+    <div class="about-decor"></div>
+    <div class="img-frame">
+      <picture class="img-reveal" data-reveal-img>
+        <source srcset="fotos/escritorio-carlos.webp" type="image/webp">
+        <img src="fotos/escritorio-carlos.jpg" alt="Dr. Carlos César Mamus, sócio fundador" width="800" height="1000" loading="lazy" decoding="async">
+      </picture>
+    </div>
+  </div>
+</section>
+-->
 
 <!-- O ESCRITÓRIO -->
 <section class="office" id="escritorio">
@@ -1170,7 +1199,7 @@
         <span class="partner-rule"></span>
         <figcaption>
           <span class="partner-name">Dr. Carlos César Mamus</span>
-          <span class="partner-role">Sócio<!-- · OAB/MT 00.000 --></span>
+          <span class="partner-role">Sócio fundador<!-- · OAB/MT 00.000 --></span>
         </figcaption>
       </figure>
     </div>

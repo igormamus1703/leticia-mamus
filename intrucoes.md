@@ -8,7 +8,7 @@ Código de origem: `referencia/index-original.html`.
 
 ## 0. O que fazer, em uma frase
 
-Reescrever o `index.html` existente como uma landing page única, mantendo **exatamente** a paleta dourada/creme e as fontes atuais, **removendo a seção do Sócio** (está sem informação), e elevando o acabamento tipográfico, o contraste, a responsividade e as animações de rolagem.
+Reescrever o `index.html` existente como uma landing page única, mantendo **exatamente** a paleta dourada/creme e as fontes atuais, **transformando a seção do Sócio** em "Sobre o Dr. Carlos" (§4.5b) + "O Escritório" (§8), e elevando o acabamento tipográfico, o contraste, a responsividade e as animações de rolagem.
 
 Não é um redesign. É o mesmo site, melhor executado.
 
@@ -18,13 +18,14 @@ Não é um redesign. É o mesmo site, melhor executado.
 
 | Item | Decisão |
 |---|---|
-| Seção "Sócio" | Virou a seção **"O Escritório"** (§8): foto horizontal do sócio + copy sobre a sociedade. Os dois são sócios; **Letícia é quem dá nome à firma**. |
+| Seção "Sócio" | Vira **"Sobre o Dr. Carlos"** (§4.5b), espelhando o Sobre da Letícia, e a seção **"O Escritório"** (§8) mostra os dois lado a lado. **Os dois são sócios fundadores**; Letícia é quem dá nome à firma. |
+| Revisão da vida toda | **Removida do site** — a tese não existe mais. Não citar em nenhum lugar. |
 | Animação da cadeira vazia → advogado sentado | **Descartada.** O vídeo ficava instável (autoplay bloqueado, travamento em troca de aba, 9:16 num bloco horizontal). Substituída por foto estática com revelação por rolagem. Não reintroduzir. |
 | Nome da Dra. Letícia | **Letícia Figueiredo Mamus.** A marca no topo e o rodapé continuam "Letícia Mamus — Advogados Associados" (nome da firma). |
 | Formulário de contato | **Não existe.** Conversão é só WhatsApp + e-mail. |
 | Tom da escrita | Elegante e acolhedor — como está hoje. Não mudar as copies existentes. |
 | Objetivo do site | Profissionalizar o escritório, não captar cliente agressivamente. Sem urgência, sem "fale agora", sem contadores. |
-| Novas seções | Apenas **uma** faixa curta de princípios (§4.3). Nada de FAQ, blog, depoimentos ou passo a passo. |
+| Novas seções | Faixa curta de princípios (§4.3) e "Sobre o Dr. Carlos" (§4.5b). Nada de FAQ, blog, depoimentos ou passo a passo. |
 
 ---
 
@@ -44,6 +45,7 @@ Deixe **marcadores no código, comentados**, não texto visível na página. Qua
 </div>
 -->
 
+<!-- PENDENTE: texto do "Sobre o Dr. Carlos" (§4.5b) e sobrenome dele -->
 <!-- PENDENTE: Instagram e demais redes — inserir no rodapé -->
 <!-- PENDENTE: confirmar o WhatsApp. O link atual é wa.me/5566964555655 (13 dígitos).
      Um celular de MT tem 11 dígitos com país: 55 + 66 + 9 + 8 dígitos.
@@ -111,7 +113,8 @@ Aplicar `text-wrap: balance` em H1/H2 e `text-wrap: pretty` em parágrafos.
 #inicio          hero: texto à esquerda, retrato à direita
 (faixa)          4 princípios — NOVO
 #servicos        6 cartões (3×2)
-#sobre           retrato + 3 parágrafos
+#sobre           Letícia: retrato + 3 parágrafos
+#sobre-carlos    Carlos: mesma estrutura, espelhada (§4.5b) — NOVO
 #escritorio      sociedade: texto + retratos dos dois sócios lado a lado (§8)
 #contato         WhatsApp / E-mail / Atendimento + CTA
 <footer>         copyright (+ OAB quando vier)
@@ -148,7 +151,14 @@ Sem ícones. Sem números. Sem caixas.
 
 ### 4.4 Serviços
 
-Os 6 cartões e todos os textos são **idênticos ao original** — não reescrever. Grid `repeat(auto-fit, minmax(290px, 1fr))`, gap `clamp(1.1rem, 2vw, 1.7rem)`.
+Os 6 cartões e os textos são **idênticos ao original**, exceto as duas mudanças pedidas pela cliente abaixo — não reescrever o resto. Grid `repeat(auto-fit, minmax(290px, 1fr))`, gap `clamp(1.1rem, 2vw, 1.7rem)`.
+
+**Mudanças de conteúdo (pedido da cliente):**
+
+- **01 Aposentadorias** — incluir a da pessoa com deficiência:
+  > Aposentadoria por idade, tempo de contribuição, especial, por invalidez e da pessoa com deficiência (PcD). Planejamento para o melhor benefício possível.
+- **05 Revisão de Benefícios** — tirar "revisão da vida toda":
+  > Revisão de teto e outras teses para correção e aumento do valor do seu benefício.
 
 Correções em relação ao site atual:
 
@@ -161,6 +171,34 @@ Correções em relação ao site atual:
 - Grid 2 colunas: foto à esquerda, texto à direita. Colapsa em 1 coluna abaixo de 900px (foto primeiro).
 - Os 3 parágrafos são os do original, com os mesmos `<strong>` em `--gold-dark` peso 500.
 - **Melhoria — revelação da foto:** em vez de só aparecer, a imagem é revelada por `clip-path: inset(0 0 100% 0)` → `inset(0 0 0 0)` em 1.4s quando 30% dela entra na tela. É a mesma mecânica de gatilho por rolagem que o cliente quer na cena da cadeira (§8) — implemente as duas com o mesmo helper.
+
+### 4.5b Sobre o Dr. Carlos — NOVO
+
+Logo depois de `#sobre`, `id="sobre-carlos"`. **Mesma estrutura e CSS do Sobre da Letícia**, espelhada: texto à esquerda, foto à direita (classe `.about-reverse`, que já existia no original). Abaixo de 900px a foto vem primeiro, igual à Letícia. Mesma revelação por `clip-path`.
+
+- Tag: `Sócio fundador` · Título: `Dr. Carlos [SOBRENOME]`
+- Foto: `fotos/escritorio-carlos.jpg` (a mesma do §8.3)
+- Fundo `#FAF6F0` para separar visualmente do Sobre da Letícia (que fica em `#FDFBF7`).
+- Nav: **não** ganha item novo — "Sobre" continua levando a `#sobre`.
+
+**PENDENTE — texto do Carlos.** A cliente vai mandar. Até lá a seção fica **comentada inteira no HTML** (não publicar com placeholder):
+
+```html
+<!-- PENDENTE: texto do Dr. Carlos — descomentar quando chegar
+<section class="about about-reverse" id="sobre-carlos">
+  <div class="about-text" data-animate>
+    <span class="section-tag">Sócio fundador</span>
+    <h2 class="section-title">Dr. Carlos <em>[SOBRENOME]</em></h2>
+    <p>[Parágrafo 1 — formação e trajetória]</p>
+    <p>[Parágrafo 2 — áreas em que atua dentro do previdenciário]</p>
+    <p>[Parágrafo 3 — como atende]</p>
+  </div>
+  <div class="about-image" data-animate data-delay="140">
+    <picture class="img-reveal" data-reveal-img>…escritorio-carlos…</picture>
+  </div>
+</section>
+-->
+```
 
 ### 4.6 Contato
 
@@ -282,7 +320,7 @@ Vai **depois** de `#sobre`, antes de `#contato`. Referência visual: opção **2
 
 ### 8.1 Decisão
 
-O escritório é dos **dois sócios** — a seção mostra **Letícia e Carlos lado a lado**, com o mesmo peso visual. Texto à esquerda (≈ 0.85fr), par de retratos à direita (≈ 1.4fr).
+O escritório é dos **dois sócios fundadores** — a seção mostra **Letícia e Carlos lado a lado**, com o mesmo peso visual. Texto à esquerda (≈ 0.85fr), par de retratos à direita (≈ 1.4fr).
 
 A ideia anterior (vídeo do sócio sentando na cadeira) **foi descartada** — autoplay bloqueado no mobile, travava ao trocar de aba, 9:16 e ~5MB. Não ressuscitar.
 
@@ -299,7 +337,7 @@ Legendas sob cada retrato (nome em Cormorant, função em Raleway caixa-alta):
 | Retrato | Nome | Função |
 |---|---|---|
 | esquerda | Dra. Letícia Figueiredo Mamus | Sócia fundadora |
-| direita | Dr. Carlos | Sócio |
+| direita | Dr. Carlos | Sócio fundador |
 
 **PENDENTE:** sobrenome do Carlos e OAB dos dois. Quando chegarem, a linha de função vira `Sócia fundadora · OAB/MT 00.000`. Deixar comentado no HTML, nunca visível como placeholder.
 
@@ -351,14 +389,14 @@ A foto da Letícia é a mesma do hero (recortada). Se vier outra foto dela, subs
         <div class="partner-frame partner-frame--right">
           <picture class="img-reveal" data-reveal-img>
             <source srcset="fotos/escritorio-carlos.webp" type="image/webp">
-            <img src="fotos/escritorio-carlos.jpg" alt="Dr. Carlos, sócio do escritório, sentado à mesa"
+            <img src="fotos/escritorio-carlos.jpg" alt="Dr. Carlos, sócio fundador, sentado à mesa"
                  width="800" height="1000" loading="lazy" decoding="async">
           </picture>
         </div>
         <span class="partner-rule"></span>
         <figcaption>
           <span class="partner-name">Dr. Carlos<!-- SOBRENOME --></span>
-          <span class="partner-role">Sócio<!-- · OAB/MT 00.000 --></span>
+          <span class="partner-role">Sócio fundador<!-- · OAB/MT 00.000 --></span>
         </figcaption>
       </figure>
     </div>
@@ -428,6 +466,8 @@ Um único `index.html` (CSS no `<head>`, JS antes de `</body>`), a pasta `fotos/
 
 - [ ] Nenhum `[nome do sócio]`, `[Texto ...]` ou placeholder visível na página
 - [ ] Zero base64 no HTML; fotos vindo de `fotos/` com `.webp` + fallback
+- [ ] Cartão 01 cita aposentadoria da pessoa com deficiência (PcD); "revisão da vida toda" não aparece em lugar nenhum
+- [ ] Carlos como "Sócio fundador" no Escritório e no Sobre dele
 - [ ] Números dos cartões legíveis
 - [ ] Texto dos cartões em `--text-soft`, não `--text-muted`
 - [ ] Estado de foco visível em todos os links e botões
