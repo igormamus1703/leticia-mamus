@@ -47,10 +47,9 @@ Deixe **marcadores no código, comentados**, não texto visível na página. Qua
 
 <!-- PENDENTE: texto do "Sobre o Dr. Carlos" (§4.5b) e sobrenome dele -->
 <!-- PENDENTE: Instagram e demais redes — inserir no rodapé -->
-<!-- PENDENTE: confirmar o WhatsApp. O link atual é wa.me/5566964555655 (13 dígitos).
-     Um celular de MT tem 11 dígitos com país: 55 + 66 + 9 + 8 dígitos.
-     Verificar se o correto é 5566996455655 ou 556696455655. -->
 ```
+
+> **WhatsApp confirmado pela cliente:** (66) 99986-2215 → `https://wa.me/5566999862215`. Já atualizado em todos os links (hero, sobre, contato, botão flutuante).
 
 > **Importante (Provimento OAB nº 205/2021):** o número de inscrição da OAB deve aparecer no site. Isso é obrigatório, não é preferência de design. Assim que o cliente informar, o rodapé precisa exibir. Também não incluir: promessa de resultado, valores, depoimentos de clientes, "melhor advogado", ou qualquer mercantilização.
 
@@ -204,7 +203,7 @@ Logo depois de `#sobre`, `id="sobre-carlos"`. **Mesma estrutura e CSS do Sobre d
 
 Centralizado, `max-width: 640px`. Régua dourada em degradê no topo. Três blocos em `flex` com `flex-wrap` e `gap: 2.2rem clamp(2rem, 5vw, 4rem)`:
 
-- **WhatsApp** — `(66) 9645-5655` → `https://wa.me/5566964555655`
+- **WhatsApp** — `(66) 99986-2215` → `https://wa.me/5566999862215`
 - **E-mail** — `contato@lfmamus.adv.br` → `mailto:`
 - **Atendimento** — `Presencial e Online`
 
