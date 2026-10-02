@@ -8,7 +8,7 @@ Código de origem: `referencia/index-original.html`.
 
 ## 0. O que fazer, em uma frase
 
-Reescrever o `index.html` existente como uma landing page única, mantendo **exatamente** a paleta dourada/creme e as fontes atuais, **transformando a seção do Sócio** em "Sobre o Dr. Carlos" (§4.5b) + "O Escritório" (§8), e elevando o acabamento tipográfico, o contraste, a responsividade e as animações de rolagem.
+Reescrever o `index.html` existente como uma landing page única, mantendo **exatamente** a paleta dourada/creme e as fontes atuais, **transformando a seção do Sócio** em "Sobre o Dr. Carlos" (§4.5b), e elevando o acabamento tipográfico, o contraste, a responsividade e as animações de rolagem.
 
 Não é um redesign. É o mesmo site, melhor executado.
 
@@ -18,7 +18,8 @@ Não é um redesign. É o mesmo site, melhor executado.
 
 | Item | Decisão |
 |---|---|
-| Seção "Sócio" | Vira **"Sobre o Dr. Carlos"** (§4.5b), espelhando o Sobre da Letícia, e a seção **"O Escritório"** (§8) mostra os dois lado a lado. **Os dois são sócios fundadores**; Letícia é quem dá nome à firma. |
+| Seção "Sócio" | Vira **"Sobre o Dr. Carlos"** (§4.5b), espelhando o Sobre da Letícia — texto curto + foto, sem CTA de "sociedade". **Os dois são sócios fundadores**; Letícia é quem dá nome à firma. |
+| Seção "O Escritório" (§8, antiga) | **Removida.** A cliente pediu para tirar o título "Uma sociedade a quatro mãos" e as duas fotos lado a lado; ficou só a seção individual do Carlos (§4.5b), espelhando a da Letícia. O §8 abaixo é histórico — não implementar. |
 | Revisão da vida toda | **Removida do site** — a tese não existe mais. Não citar em nenhum lugar. |
 | Animação da cadeira vazia → advogado sentado | **Descartada.** O vídeo ficava instável (autoplay bloqueado, travamento em troca de aba, 9:16 num bloco horizontal). Substituída por foto estática com revelação por rolagem. Não reintroduzir. |
 | Nome da Dra. Letícia | **Letícia Figueiredo Mamus.** A marca no topo e o rodapé continuam "Letícia Mamus — Advogados Associados" (nome da firma). |
@@ -45,9 +46,10 @@ Deixe **marcadores no código, comentados**, não texto visível na página. Qua
 </div>
 -->
 
-<!-- PENDENTE: texto do "Sobre o Dr. Carlos" (§4.5b) e sobrenome dele -->
 <!-- PENDENTE: Instagram e demais redes — inserir no rodapé -->
 ```
+
+> **Sobre o Dr. Carlos:** sobrenome (César Mamus) e um parágrafo curto já publicados em `#sobre-carlos` (§4.5b), com o que se sabia até agora. Se a cliente mandar um texto mais completo, substituir.
 
 > **WhatsApp confirmado pela cliente:** (66) 99986-2215 → `https://wa.me/5566999862215`. Já atualizado em todos os links (hero, sobre, contato, botão flutuante).
 
@@ -108,17 +110,18 @@ Aplicar `text-wrap: balance` em H1/H2 e `text-wrap: pretty` em parágrafos.
 ## 4. Estrutura da página
 
 ```
-<nav>            Início · Serviços · Sobre · Escritório · Contato — fixo, encolhe ao rolar, marca a seção ativa
+<nav>            Início · Serviços · Sobre · Contato — fixo, encolhe ao rolar, marca a seção ativa
 #inicio          hero: texto à esquerda, retrato à direita
 (faixa)          4 princípios — NOVO
 #servicos        6 cartões (3×2)
 #sobre           Letícia: retrato + 3 parágrafos
 #sobre-carlos    Carlos: mesma estrutura, espelhada (§4.5b) — NOVO
-#escritorio      sociedade: texto + retratos dos dois sócios lado a lado (§8)
 #contato         WhatsApp / E-mail / Atendimento + CTA
 <footer>         copyright (+ OAB quando vier)
 botão flutuante  WhatsApp, aparece depois de 420px de rolagem — NOVO
 ```
+
+Nav não tem item para `#sobre-carlos` — "Sobre" continua levando só a `#sobre`.
 
 ### 4.1 Nav
 
@@ -173,31 +176,14 @@ Correções em relação ao site atual:
 
 ### 4.5b Sobre o Dr. Carlos — NOVO
 
-Logo depois de `#sobre`, `id="sobre-carlos"`. **Mesma estrutura e CSS do Sobre da Letícia**, espelhada: texto à esquerda, foto à direita (classe `.about-reverse`, que já existia no original). Abaixo de 900px a foto vem primeiro, igual à Letícia. Mesma revelação por `clip-path`.
+Logo depois de `#sobre`, `id="sobre-carlos"`. **Mesma estrutura e CSS do Sobre da Letícia**, espelhada: texto à esquerda, foto à direita (classe `.about-reverse`). Abaixo de 900px a foto vem primeiro, igual à Letícia. Mesma revelação por `clip-path`.
 
-- Tag: `Sócio fundador` · Título: `Dr. Carlos [SOBRENOME]`
-- Foto: `fotos/escritorio-carlos.jpg` (a mesma do §8.3)
+- Tag: `Sócio fundador` · Título: `Dr. Carlos César Mamus`
+- Foto: a mesma usada antes na extinta seção "O Escritório" (foto dele sentado à mesa, recortada 4:5).
 - Fundo `#FAF6F0` para separar visualmente do Sobre da Letícia (que fica em `#FDFBF7`).
 - Nav: **não** ganha item novo — "Sobre" continua levando a `#sobre`.
-
-**PENDENTE — texto do Carlos.** A cliente vai mandar. Até lá a seção fica **comentada inteira no HTML** (não publicar com placeholder):
-
-```html
-<!-- PENDENTE: texto do Dr. Carlos — descomentar quando chegar
-<section class="about about-reverse" id="sobre-carlos">
-  <div class="about-text" data-animate>
-    <span class="section-tag">Sócio fundador</span>
-    <h2 class="section-title">Dr. Carlos <em>[SOBRENOME]</em></h2>
-    <p>[Parágrafo 1 — formação e trajetória]</p>
-    <p>[Parágrafo 2 — áreas em que atua dentro do previdenciário]</p>
-    <p>[Parágrafo 3 — como atende]</p>
-  </div>
-  <div class="about-image" data-animate data-delay="140">
-    <picture class="img-reveal" data-reveal-img>…escritorio-carlos…</picture>
-  </div>
-</section>
--->
-```
+- **Um só parágrafo** (não três como o da Letícia) — é só o que se sabe hoje: formado em Direito desde 2001, atua com foco exclusivo em Direito Previdenciário desde 2013, em Primavera do Leste/MT. Mesmo CTA "Converse Comigo" para o WhatsApp.
+- Se a cliente mandar um texto mais completo (trajetória, áreas de atuação, forma de atendimento — no padrão dos 3 parágrafos da Letícia), substituir o parágrafo único por eles.
 
 ### 4.6 Contato
 
@@ -313,147 +299,11 @@ Adicionar JSON-LD `LegalService` — mas **só preencher `address` e `telephone`
 
 ---
 
-## 8. Seção "O Escritório" — layout aprovado (2a)
+## 8. (Removido) Seção "O Escritório"
 
-Vai **depois** de `#sobre`, antes de `#contato`. Referência visual: opção **2a** em `Mockups Escritorio.dc.html`.
+Esta seção existiu (layout 2a, Letícia e Carlos lado a lado, título "Uma sociedade a quatro mãos") mas foi **removida a pedido da cliente**: ela achou a foto do Carlos com pouca nitidez (ampliada de um recorte apertado) e preferiu simplificar para duas seções individuais — "Sobre" (Letícia) e "Sobre o Dr. Carlos" (§4.5b) — sem a moldura de "sociedade".
 
-### 8.1 Decisão
-
-O escritório é dos **dois sócios fundadores** — a seção mostra **Letícia e Carlos lado a lado**, com o mesmo peso visual. Texto à esquerda (≈ 0.85fr), par de retratos à direita (≈ 1.4fr).
-
-A ideia anterior (vídeo do sócio sentando na cadeira) **foi descartada** — autoplay bloqueado no mobile, travava ao trocar de aba, 9:16 e ~5MB. Não ressuscitar.
-
-**Arquivos que saem do projeto:** `carlos-sentando.mp4`, `carlos.jpeg`, `cadeiravazia.jpeg`, `socio-escritorio.jpg` (versão antiga, camiseta azul).
-
-### 8.2 Conteúdo
-
-> **O Escritório** · Uma sociedade a *quatro mãos*
-> O escritório é conduzido por dois sócios, e cada caso passa pelo olhar dos dois — duas leituras da mesma história, uma só estratégia.
-> Atendimento presencial ou online, com a mesma escuta atenta.
-
-Legendas sob cada retrato (nome em Cormorant, função em Raleway caixa-alta):
-
-| Retrato | Nome | Função |
-|---|---|---|
-| esquerda | Dra. Letícia Figueiredo Mamus | Sócia fundadora |
-| direita | Dr. Carlos | Sócio fundador |
-
-**PENDENTE:** sobrenome do Carlos e OAB dos dois. Quando chegarem, a linha de função vira `Sócia fundadora · OAB/MT 00.000`. Deixar comentado no HTML, nunca visível como placeholder.
-
-### 8.3 Fotos — recortar no arquivo, não no CSS
-
-Os dois retratos são **4:5**. Recortar os arquivos para que os rostos fiquem no mesmo tamanho (a foto do Carlos é de corpo inteiro, com muito fundo — no mockup foi ampliada via `transform`; em produção o recorte é feito na imagem):
-
-```bash
-# Letícia — a partir de leticia-hero.jpg (1024×728)
-magick fotos/leticia-hero.jpg -crop 582x728+200+0 +repage -resize 800x1000 fotos/escritorio-leticia.jpg
-# Carlos — a partir da foto nova (1024×1024, terno preto)
-magick fotos/socio-escritorio-v2.jpg -crop 600x750+400+274 +repage -resize 800x1000 fotos/escritorio-carlos.jpg
-for f in fotos/escritorio-*.jpg; do magick "$f" -quality 82 "${f%.jpg}.webp"; done
-```
-
-Conferir visualmente: rosto do Carlos no terço superior, com o terno e a mesa visíveis; quadro da parede pode aparecer cortado no topo. Se ficar desalinhado, ajustar só o offset (`+x+y`). Cada arquivo final < 150KB.
-
-A foto da Letícia é a mesma do hero (recortada). Se vier outra foto dela, substituir aqui.
-
-### 8.4 Marcação
-
-```html
-<section class="office" id="escritorio">
-  <div class="office-inner">
-    <div class="office-text" data-animate>
-      <span class="section-tag">O Escritório</span>
-      <h2 class="section-title">Uma sociedade<br>a <em>quatro mãos</em></h2>
-      <p>O escritório é conduzido por dois sócios, e cada caso passa pelo olhar dos dois — duas leituras da mesma história, uma só estratégia.</p>
-      <p>Atendimento presencial ou online, com a mesma escuta atenta.</p>
-    </div>
-
-    <div class="partners" data-animate data-delay="140">
-      <figure class="partner">
-        <div class="partner-frame partner-frame--left">
-          <picture class="img-reveal" data-reveal-img>
-            <source srcset="fotos/escritorio-leticia.webp" type="image/webp">
-            <img src="fotos/escritorio-leticia.jpg" alt="Dra. Letícia Figueiredo Mamus, sócia fundadora"
-                 width="800" height="1000" loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <span class="partner-rule"></span>
-        <figcaption>
-          <span class="partner-name">Dra. Letícia Figueiredo Mamus</span>
-          <span class="partner-role">Sócia fundadora<!-- · OAB/MT 00.000 --></span>
-        </figcaption>
-      </figure>
-
-      <figure class="partner">
-        <div class="partner-frame partner-frame--right">
-          <picture class="img-reveal" data-reveal-img>
-            <source srcset="fotos/escritorio-carlos.webp" type="image/webp">
-            <img src="fotos/escritorio-carlos.jpg" alt="Dr. Carlos, sócio fundador, sentado à mesa"
-                 width="800" height="1000" loading="lazy" decoding="async">
-          </picture>
-        </div>
-        <span class="partner-rule"></span>
-        <figcaption>
-          <span class="partner-name">Dr. Carlos<!-- SOBRENOME --></span>
-          <span class="partner-role">Sócio fundador<!-- · OAB/MT 00.000 --></span>
-        </figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-```
-
-### 8.5 CSS
-
-```css
-.office { position:relative; overflow:hidden;
-  padding: clamp(4.5rem,9vw,7.5rem) clamp(1.5rem,6vw,6rem);
-  background: linear-gradient(175deg,#FAF6F0 0%,#FDFBF7 48%,#F7F2EA 100%); }
-.office::before { content:""; position:absolute; top:-12%; left:-10%; width:48%; height:124%;
-  background: radial-gradient(ellipse at center, rgba(182,154,86,.10) 0%, rgba(182,154,86,0) 66%);
-  pointer-events:none; }
-.office-inner { position:relative; max-width:1180px; margin:0 auto; display:grid;
-  grid-template-columns: minmax(0,.85fr) minmax(0,1.4fr);
-  gap: clamp(2.5rem,5vw,4.5rem); align-items:center; }
-
-.partners { display:grid; grid-template-columns:1fr 1fr; gap: clamp(1.5rem,3vw,2.25rem); }
-.partner { margin:0; display:flex; flex-direction:column; }
-
-/* moldura deslocada — espelhada: Letícia para a direita, Carlos para a esquerda */
-.partner-frame { position:relative; }
-.partner-frame::before { content:""; position:absolute; bottom:-14px; width:100%; height:100%;
-  border-radius:16px; border:1px solid rgba(182,154,86,.35); z-index:0; }
-.partner-frame--left::before  { left:14px; }
-.partner-frame--right::before { right:14px; }
-
-.img-reveal { position:relative; z-index:1; display:block; aspect-ratio:4/5;
-  border-radius:16px; overflow:hidden;
-  box-shadow:0 14px 52px rgba(42,37,32,.13), 0 2px 12px rgba(182,154,86,.08);
-  clip-path: inset(0 0 100% 0); transition: clip-path 1.15s var(--ease); }
-.img-reveal.is-revealed { clip-path: inset(0 0 0 0); }
-.img-reveal img { display:block; width:100%; height:100%; object-fit:cover;
-  filter:contrast(1.02) saturate(.95); }
-/* segunda foto revela 160ms depois da primeira */
-.partner + .partner .img-reveal { transition-delay:.16s; }
-
-.partner-rule { height:1px; margin-top:1.9rem;
-  background:linear-gradient(90deg, rgba(201,174,106,0), #C9AE6A, rgba(201,174,106,0)); }
-.partner figcaption { display:flex; flex-direction:column; gap:.2rem; margin-top:.9rem; text-align:center; }
-.partner-name { font-family:'Cormorant Garamond',serif; font-size:1.3rem; color:var(--text-main); text-wrap:balance; }
-.partner-role { font-size:.66rem; letter-spacing:2.6px; text-transform:uppercase;
-  color:var(--text-soft); font-weight:500; }   /* NÃO --text-muted: 2,4:1 */
-
-@media (max-width:900px) {
-  .office-inner { grid-template-columns:1fr; }   /* texto em cima, retratos embaixo */
-}
-@media (max-width:480px) {
-  .partners { grid-template-columns:1fr; max-width:340px; margin:0 auto; gap:3rem; }
-}
-```
-
-### 8.6 JS
-
-Nenhum específico. As duas fotos usam o mesmo observador de `clip-path` do §6.3 (`[data-reveal-img]`), incluindo `prefers-reduced-motion` e o `setTimeout` de segurança.
+Não recriar esta seção. Se no futuro quiserem retomar a ideia de uma seção conjunta, pedir fotos em resolução mais alta antes.
 
 ---
 
@@ -466,7 +316,7 @@ Um único `index.html` (CSS no `<head>`, JS antes de `</body>`), a pasta `fotos/
 - [ ] Nenhum `[nome do sócio]`, `[Texto ...]` ou placeholder visível na página
 - [ ] Zero base64 no HTML; fotos vindo de `fotos/` com `.webp` + fallback
 - [ ] Cartão 01 cita aposentadoria da pessoa com deficiência (PcD); "revisão da vida toda" não aparece em lugar nenhum
-- [ ] Carlos como "Sócio fundador" no Escritório e no Sobre dele
+- [ ] Carlos como "Sócio fundador" no Sobre dele (§4.5b)
 - [ ] Números dos cartões legíveis
 - [ ] Texto dos cartões em `--text-soft`, não `--text-muted`
 - [ ] Estado de foco visível em todos os links e botões
@@ -477,7 +327,7 @@ Um único `index.html` (CSS no `<head>`, JS antes de `</body>`), a pasta `fotos/
 - [ ] Todos os links de WhatsApp apontando para o mesmo número confirmado
 - [ ] Nenhum `<video>` na página; `carlos-sentando.mp4`, `carlos.jpeg` e `cadeiravazia.jpeg` fora do projeto
 - [ ] `escritorio-leticia` e `escritorio-carlos` recortados em 4:5, com `.webp` + `width`/`height`, abaixo de 150KB cada
-- [ ] "Letícia Figueiredo Mamus" (nome completo) no Sobre, na legenda do Escritório e no copyright; só o logo do nav fica "Letícia Mamus"
+- [ ] "Letícia Figueiredo Mamus" (nome completo) no Sobre e no copyright; só o logo do nav fica "Letícia Mamus"
 - [ ] Legendas dos retratos com contraste ≥ 4,5:1 (nem `--gold`, nem `--text-muted`)
 - [ ] Linha da OAB no rodapé (assim que o dado chegar) — exigência do Provimento 205/2021
 - [ ] Lighthouse mobile: 95+ em Performance e Acessibilidade
