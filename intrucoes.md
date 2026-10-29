@@ -190,7 +190,7 @@ Logo depois de `#sobre`, `id="sobre-carlos"`. **Mesma estrutura e CSS do Sobre d
 Centralizado, `max-width: 640px`. Régua dourada em degradê no topo. Três blocos em `flex` com `flex-wrap` e `gap: 2.2rem clamp(2rem, 5vw, 4rem)`:
 
 - **WhatsApp** — `(66) 99986-2215` → `https://wa.me/5566999862215`
-- **E-mail** — `contato@lfmamus.adv.br` → `mailto:`
+- **E-mail** — `mamusleticia@gmail.com` → `mailto:`
 - **Atendimento** — `Presencial e Online`
 
 Melhoria: os valores agora são `--text-main` em vez de `--text-soft` (era claro demais para um dado que a pessoa precisa ler). Quando o endereço chegar, entra como quarto bloco.
